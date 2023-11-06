@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Filters = ({ setSearchTerm, setPrepTime, setCategory, prepTime }) => {
+const Filters = ({ setSearchTerm, searchTerm, setTotalTime, totalTime }) => {
   return (
-    <div className="flex flex-col items-stretch p-5 bg-gray-200 shadow-md w-full mx-auto">
-      <div className="flex justify-between items-start w-full">
+    <div className="flex flex-col px-8 bg-gray-200 shadow-md mx-[250px] mt-6">
+      <div className="flex justify-between  ">
         <div className="flex flex-col items-center">
           <label htmlFor="search" className="font-bold mb-2 text-lg text-gray-700 text-center">
             Search
@@ -13,41 +13,32 @@ const Filters = ({ setSearchTerm, setPrepTime, setCategory, prepTime }) => {
             id="search"
             placeholder="Search Recipe"
             className="p-2 w-60"
+            value={searchTerm} 
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <div className="flex flex-col items-center">
-          <label htmlFor="prepTime" className="font-bold mb-2 text-lg text-gray-700 text-center">
-            Prep Time (<span id="sliderValue">{prepTime}</span> mins)
+          <label htmlFor="totalTime" className="font-bold mb-2 text-lg text-gray-700 text-center">
+            Total Time (Prep + Cook) 
           </label>
           <input
             type="range"
             min="0"
-            max="120"
+            max="240"
             step="5"
-            defaultValue="80"
-            id="prepTime"
+            defaultValue="120"
+            id="totalTime"
             className="w-60"
             onChange={(e) => {
-              setPrepTime(e.target.value);
+              setTotalTime(e.target.value);
               document.getElementById('sliderValue').innerText = e.target.value;
             }}
           />
-        </div>
-        <div className="flex flex-col items-center">
-          <label htmlFor="category" className="font-bold mb-2 text-lg text-gray-700 text-center">
-            Category
+          <label htmlFor="totalTime" className="font-bold mb-2 text-lg text-gray-700 text-center">
+            <span id="sliderValue">{totalTime}</span> minutes or less
           </label>
-          <select
-            id="category"
-            className="w-60 p-2"
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="">All Categories</option>
-            <option value="Italian">Italian</option>
-            <option value="American">American</option>
-          </select>
         </div>
+
       </div>
     </div>
   );
