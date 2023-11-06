@@ -2,8 +2,8 @@ import React from 'react';
 
 const Filters = ({ setSearchTerm, searchTerm, setTotalTime, totalTime }) => {
   return (
-    <div className="flex flex-col px-8 bg-gray-200 shadow-md mx-[250px] mt-6">
-      <div className="flex justify-between  ">
+    <div className="flex flex-col px-8 bg-gray-200 shadow-md mx-20 mt-6">
+      <div className="flex justify-around  ">
         <div className="flex flex-col items-center">
           <label htmlFor="search" className="font-bold mb-2 text-lg text-gray-700 text-center">
             Search
