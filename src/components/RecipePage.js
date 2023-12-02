@@ -41,7 +41,7 @@ const RecipePage = () => {
         <div className="text-center text-lg text-gray-500 my-4">No recipes match the current filter criteria.</div>
       ) : selectedRecipe ? (
         <RecipeDetail
-          recipe={selectedRecipe}
+          recipe={selectedRecipe.id}
           onBack={() => setSelectedRecipe(null)}
         />
       ) : (
@@ -56,7 +56,7 @@ const RecipePage = () => {
               prepTime={recipe.prepTime}
               cookTime={recipe.cookTime}
               servings={recipe.servings}
-              onClick={() => setSelectedRecipe(recipe.id)}
+              onClick={() => setSelectedRecipe(recipe)}
             />
           ))}
         </div>
