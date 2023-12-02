@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const useRecipes = () => {
-  const [recipes, setRecipes] = useState([]);
+const fetchRecipeDetail = async (recipeId) => {
   const [recipeDetails, setRecipeDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -12,13 +11,13 @@ const useRecipes = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_RECPIE_API_URL}/recipes`, {
+        const response = await axios.get(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/${recipeId}`, {
           headers: {
             'Content-Type': 'application/json',
           },
         });
 
-        setRecipes(response.data);
+        setRecipeDetails(response.data);
         setIsLoading(false);
 
       } catch (err) {
@@ -29,7 +28,7 @@ const useRecipes = () => {
     fetchData();
   }, []);
 
-  return { recipes, isLoading, error };
+  return { recipeDetails, isLoading, error };
 };
 
-export default useRecipes;
+export default fetchRecipeDetail;
