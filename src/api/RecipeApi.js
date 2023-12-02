@@ -3,7 +3,6 @@ import axios from 'axios';
 
 const useRecipes = () => {
   const [recipes, setRecipes] = useState([]);
-  const [recipeDetails, setRecipeDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
