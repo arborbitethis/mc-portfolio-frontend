@@ -41,7 +41,7 @@ const RecipePage = () => {
         <div className="text-center text-lg text-gray-500 my-4">No recipes match the current filter criteria.</div>
       ) : selectedRecipe ? (
         <RecipeDetail
-          recipe={selectedRecipe.id}
+          recipeId={selectedRecipe.id}
           onBack={() => setSelectedRecipe(null)}
         />
       ) : (

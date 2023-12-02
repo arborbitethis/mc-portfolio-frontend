@@ -3,6 +3,7 @@ import useFetchRecipeDetail from '../../api/RecipeDetailApi';
 
 
 const RecipeDetail = ({ recipeId, onBack }) => {
+  console.log(recipeId)
   const { recipeDetails, isLoading, error } = useFetchRecipeDetail(recipeId);
 
   if (isLoading) return <p>Loading...</p>;
