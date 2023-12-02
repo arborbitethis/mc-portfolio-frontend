@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const fetchRecipeDetail = async (recipeId) => {
+const useFetchRecipeDetail = (recipeId) => {
   const [recipeDetails, setRecipeDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -18,17 +18,17 @@ const fetchRecipeDetail = async (recipeId) => {
         });
 
         setRecipeDetails(response.data);
-        setIsLoading(false);
-
       } catch (err) {
         setError(err);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     };
+
     fetchData();
-  }, []);
+  }, [recipeId]);
 
   return { recipeDetails, isLoading, error };
 };
 
-export default fetchRecipeDetail;
+export default useFetchRecipeDetail;

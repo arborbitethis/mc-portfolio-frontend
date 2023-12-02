@@ -1,9 +1,9 @@
 import React from 'react';
-import fetchRecipeDetail from '../../api/RecipeDetailApi';
+import useFetchRecipeDetail from '../../api/RecipeDetailApi';
 
 
 const RecipeDetail = ({ recipeId, onBack }) => {
-  const { recipeDetails, isLoading, error } = fetchRecipeDetail(recipeId);
+  const { recipeDetails, isLoading, error } = useFetchRecipeDetail(recipeId);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipe: {error.message}</p>;
