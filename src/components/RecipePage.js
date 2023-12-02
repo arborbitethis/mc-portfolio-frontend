@@ -51,12 +51,7 @@ const RecipePage = () => {
               key={index}
               className="mr-4 mb-4 cursor-pointer"
               maxWidth="320px"
-              id={recipe.id}
-              title={recipe.title}
-              description={recipe.description}
-              prepTime={recipe.prepTime}
-              cookTime={recipe.cookTime}
-              servings={recipe.servings}
+              recipeId={recipe.id}
               onClick={() => setSelectedRecipe(recipe)}
             />
           ))}
