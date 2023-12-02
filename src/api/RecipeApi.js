@@ -11,7 +11,7 @@ const useRecipes = () => {
       setIsLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/assets`, {
+        const response = await axios.get(`${process.env.REACT_APP_RECPIE_API_URL}/recipes`, {
           headers: {
             'Content-Type': 'application/json',
           },
