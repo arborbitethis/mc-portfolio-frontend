@@ -1,5 +1,6 @@
 mc-portfolio-backend.code-workspace
 
+.env
 
 .DS_STORE
 node_modules

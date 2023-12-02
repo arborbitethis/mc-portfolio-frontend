@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RecipeCard = ({ className, title, category, description, prepTime, cookTime, servings, onClick }) => {
+const RecipeCard = ({ className, title, description, prepTime, cookTime, servings, onClick }) => {
   const totalTime = prepTime + cookTime;
 
   return (
@@ -10,13 +10,10 @@ const RecipeCard = ({ className, title, category, description, prepTime, cookTim
     >
       <h2 className="text-xl text-gray-700 mb-2">{title}</h2>
       <p className="text-gray-500 mb-2">{description}</p>
-      <p className="text-gray-500 mb-2">Category: {category}</p>
       <p className="text-gray-500 mb-2">Total Time: {totalTime} mins</p>
       <p className="text-gray-500 mb-2">Servings: {servings}</p>
     </div>
   );
 };
-
-
 
 export default RecipeCard;
