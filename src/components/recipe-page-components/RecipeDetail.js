@@ -1,5 +1,5 @@
 import React from 'react';
-import fetchRecipeDetail from '../api/RecipeDetailApi';
+import fetchRecipeDetail from '../../api/RecipeDetailApi';
 
 
 const RecipeDetail = ({ recipeId, onBack }) => {
