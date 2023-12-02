@@ -1,16 +1,16 @@
 import React from 'react';
 import useFetchRecipeDetail from '../../api/RecipeDetailApi';
 
-
 const RecipeDetail = ({ recipeId, onBack }) => {
-  console.log(recipeId)
   const { recipeDetails, isLoading, error } = useFetchRecipeDetail(recipeId);
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading recipe: {error.message}</p>;
 
   if (!recipeDetails) return null;
-  const recipe = recipeDetails.recipe[0]; // Assuming the API returns an array with one recipe
+  const recipe = recipeDetails.recipe[0];
+  const ingredients = recipeDetails.ingredients;
+  const steps = recipeDetails.steps;
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg">
@@ -27,7 +27,7 @@ const RecipeDetail = ({ recipeId, onBack }) => {
       <div className="mt-4">
         <h3 className="font-bold mb-2">Ingredients:</h3>
         <ul>
-          {recipe.ingredients.map(ingredient => (
+          {ingredients.map(ingredient => (
             <li key={ingredient.ingredient_id}>{ingredient.ingredient_name}: {ingredient.quantity}</li>
           ))}
         </ul>
@@ -35,10 +35,12 @@ const RecipeDetail = ({ recipeId, onBack }) => {
 
       <div className="mt-4">
         <h3 className="font-bold mb-2">Instructions:</h3>
-        {recipe.steps.map(step => (
+        {steps.map(step => (
           <div key={step.step_id} className="mb-4">
             <p><strong>Step {step.step_number}:</strong> {step.step_description}</p>
-            {step.step_image && <img src={step.step_image} alt={`Step ${step.step_number}`} className="w-full h-64 object-cover rounded" />}
+            {step.step_image && (
+              <img src={step.step_image} alt={`Step ${step.step_number}`} className="w-full h-64 object-cover rounded" />
+            )}
           </div>
         ))}
       </div>
