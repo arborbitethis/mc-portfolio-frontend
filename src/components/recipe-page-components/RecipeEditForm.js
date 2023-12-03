@@ -1,35 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
-//     // Structuring the initial state correctly
-//     const [editedRecipe, setEditedRecipe] = useState({ 
-//       ...recipe, 
-//       ingredients: ingredients || [], 
-//       steps: steps || [] 
-//     });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setEditedRecipe(prev => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleIngredientChange = (index, e) => {
-//     const updatedIngredients = [...editedRecipe.ingredients];
-//     updatedIngredients[index][e.target.name] = e.target.value;
-//     setEditedRecipe({ ...editedRecipe, ingredients: updatedIngredients });
-//   };
-
-//   const handleStepChange = (index, e) => {
-//     const updatedSteps = [...editedRecipe.steps];
-//     updatedSteps[index][e.target.name] = e.target.value;
-//     setEditedRecipe({ ...editedRecipe, steps: updatedSteps });
-//   };
-
-const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
+const RecipeEditForm = ({ recipeData, onCancel }) => {
     const [editedRecipe, setEditedRecipe] = useState({
+      id: '',
       title: '', 
       description: '', 
+      image: '',
       prep_time: '', 
       cook_time: '', 
       servings: '', 
@@ -37,16 +14,32 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
       steps: []
     });
 
-    // Update state when the props change
     useEffect(() => {
-      if (recipe && ingredients && steps) {
+      if (recipeData) {
         setEditedRecipe({ 
-          ...recipe, 
-          ingredients, 
-          steps 
+          ...recipeData.recipe[0], 
+          ingredients: recipeData.ingredients, 
+          steps: recipeData.steps 
         });
       }
-    }, [recipe, ingredients, steps]);
+    }, [recipeData]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditedRecipe(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleIngredientChange = (index, e) => {
+    const updatedIngredients = [...editedRecipe.ingredients];
+    updatedIngredients[index][e.target.name] = e.target.value;
+    setEditedRecipe({ ...editedRecipe, ingredients: updatedIngredients });
+  };
+
+  const handleStepChange = (index, e) => {
+    const updatedSteps = [...editedRecipe.steps];
+    updatedSteps[index][e.target.name] = e.target.value;
+    setEditedRecipe({ ...editedRecipe, steps: updatedSteps });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +55,7 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
     };
     
     try {
-      const response = await axios.put(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/${recipe.id}`, dataToSend, {
+      const response = await axios.put(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/${editedRecipe.id}`, dataToSend, {
         headers: {
           'Content-Type': 'application/json'
           // Include other headers like authorization tokens if needed
