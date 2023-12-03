@@ -44,7 +44,27 @@ const RecipeEditForm = ({ recipe, onCancel }) => {
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-xl font-bold mb-4">Edit Recipe</h2>
       
-      {/* Existing Fields */}
+       
+      <label className="block mb-2">
+        Title:
+        <input
+          type="text"
+          name="title"
+          value={editedRecipe.title}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded"
+        />
+      </label>
+
+      <label className="block mb-2">
+        Description:
+        <textarea
+          name="description"
+          value={editedRecipe.description}
+          onChange={handleChange}
+          className="w-full p-2 border border-gray-300 rounded"
+        />
+      </label>
       
       <label className="block mb-2">
         Prep Time (mins):
