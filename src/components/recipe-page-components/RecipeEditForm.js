@@ -1,31 +1,52 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+// const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
+//     // Structuring the initial state correctly
+//     const [editedRecipe, setEditedRecipe] = useState({ 
+//       ...recipe, 
+//       ingredients: ingredients || [], 
+//       steps: steps || [] 
+//     });
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setEditedRecipe(prev => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleIngredientChange = (index, e) => {
+//     const updatedIngredients = [...editedRecipe.ingredients];
+//     updatedIngredients[index][e.target.name] = e.target.value;
+//     setEditedRecipe({ ...editedRecipe, ingredients: updatedIngredients });
+//   };
+
+//   const handleStepChange = (index, e) => {
+//     const updatedSteps = [...editedRecipe.steps];
+//     updatedSteps[index][e.target.name] = e.target.value;
+//     setEditedRecipe({ ...editedRecipe, steps: updatedSteps });
+//   };
+
 const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
-    // Structuring the initial state correctly
-    const [editedRecipe, setEditedRecipe] = useState({ 
-      ...recipe, 
-      ingredients: ingredients || [], 
-      steps: steps || [] 
+    const [editedRecipe, setEditedRecipe] = useState({
+      title: '', 
+      description: '', 
+      prep_time: '', 
+      cook_time: '', 
+      servings: '', 
+      ingredients: [], 
+      steps: []
     });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditedRecipe(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleIngredientChange = (index, e) => {
-    const updatedIngredients = [...editedRecipe.ingredients];
-    updatedIngredients[index][e.target.name] = e.target.value;
-    setEditedRecipe({ ...editedRecipe, ingredients: updatedIngredients });
-  };
-
-  const handleStepChange = (index, e) => {
-    const updatedSteps = [...editedRecipe.steps];
-    updatedSteps[index][e.target.name] = e.target.value;
-    setEditedRecipe({ ...editedRecipe, steps: updatedSteps });
-  };
-
+    // Update state when the props change
+    useEffect(() => {
+      if (recipe && ingredients && steps) {
+        setEditedRecipe({ 
+          ...recipe, 
+          ingredients, 
+          steps 
+        });
+      }
+    }, [recipe, ingredients, steps]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
