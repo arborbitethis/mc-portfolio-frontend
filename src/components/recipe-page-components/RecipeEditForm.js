@@ -16,6 +16,7 @@ const RecipeEditForm = ({ recipeData, onCancel }) => {
 
     useEffect(() => {
       if (recipeData) {
+        console.log(recipeData)
         setEditedRecipe({ 
           ...recipeData.recipe[0], 
           ingredients: recipeData.ingredients, 
