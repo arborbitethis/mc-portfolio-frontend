@@ -39,9 +39,9 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
         step_id, step_number, step_description
       })),
     };
-    
+
     try {
-      const response = await axios.put(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/${recipe.id}`, editedRecipe, {
+      const response = await axios.put(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/${recipe.id}`, dataToSend, {
         headers: {
           'Content-Type': 'application/json'
           // Include other headers like authorization tokens if needed
@@ -67,7 +67,7 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
         <input
           type="text"
           name="title"
-          value={editedRecipe.title}
+          value={dataToSend.title}
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -77,7 +77,7 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
         Description:
         <textarea
           name="description"
-          value={editedRecipe.description}
+          value={dataToSend.description}
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -88,7 +88,7 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
         <input
           type="number"
           name="prep_time"
-          value={editedRecipe.prep_time}
+          value={dataToSend.prep_time}
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -99,7 +99,7 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
         <input
           type="number"
           name="cook_time"
-          value={editedRecipe.cook_time}
+          value={dataToSend.cook_time}
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
         />
@@ -110,14 +110,14 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
         <input
           type="number"
           name="servings"
-          value={editedRecipe.servings}
+          value={dataToSend.servings}
           onChange={handleChange}
           className="w-full p-2 border border-gray-300 rounded"
         />
       </label>
 
       <h3 className="font-bold mb-2">Ingredients:</h3>
-      {editedRecipe.ingredients.map((ingredient, index) => (
+      {dataToSend.ingredients.map((ingredient, index) => (
         <div key={index} className="mb-2">
           <input
             type="text"
@@ -137,7 +137,7 @@ const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
       ))}
 
       <h3 className="font-bold mb-2">Steps:</h3>
-      {editedRecipe.steps.map((step, index) => (
+      {dataToSend.steps.map((step, index) => (
         <textarea
           key={index}
           name="step_description"
