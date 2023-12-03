@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const RecipeEditForm = ({ recipe, onCancel }) => {
-  const [editedRecipe, setEditedRecipe] = useState({ ...recipe });
+const RecipeEditForm = ({ recipe, ingredients, steps, onCancel }) => {
+    // Structuring the initial state correctly
+    const [editedRecipe, setEditedRecipe] = useState({ 
+      ...recipe, 
+      ingredients: ingredients || [], 
+      steps: steps || [] 
+    });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,9 +26,20 @@ const RecipeEditForm = ({ recipe, onCancel }) => {
     setEditedRecipe({ ...editedRecipe, steps: updatedSteps });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    // Add logic to structure the data as per your API requirements
+    const dataToSend = {
+      ...editedRecipe,
+      ingredients: editedRecipe.ingredients.map(({ ingredient_id, ingredient_name, quantity }) => ({
+        ingredient_id, ingredient_name, quantity
+      })),
+      steps: editedRecipe.steps.map(({ step_id, step_number, step_description }) => ({
+        step_id, step_number, step_description
+      })),
+    };
+    
     try {
       const response = await axios.put(`${process.env.REACT_APP_RECPIE_API_URL}/recipe/${recipe.id}`, editedRecipe, {
         headers: {
