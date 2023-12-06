@@ -18,7 +18,7 @@ const RecipeDetail = ({ recipeId, onBack }) => {
 
   if (isEditing) {
     // Render the edit form if in edit mode
-    return <RecipeEditForm recipe={recipe} onCancel={() => setIsEditing(false)} />;
+    return <RecipeEditForm recipeData={recipeDetails} onCancel={() => setIsEditing(false)} />;
   }
 
   return (
