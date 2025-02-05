@@ -15,7 +15,8 @@ const AboutMe = () => {
       <div className="mb-6">
         <p className="text-gray-700 leading-relaxed mb-2">My expertise includes:</p>
         <ul className="list-disc ml-5 text-gray-700 max-w-2xl w-full mb-6">
-          <li className="mb-2 leading-relaxed">Deploying robust CI/CD pipelines as part of cloud migration strategies through the use of Azure DevOps, Harness, Jenkins, and Github actions.</li>
+          <li className="mb-2 leading-relaxed">Implemented enterprise-scale infrastructure as code using Terraform, orchestrating multi-region Azure deployments through modular design patterns and automated workflows.</li>
+          <li className="mb-2 leading-relaxed">Creating robust CI/CD pipelines as part of cloud migration strategies through the use of Azure DevOps, Harness, Jenkins, and Github actions.</li>
           <li className="mb-2 leading-relaxed">Integrating observability and load testing tools to bolster code quality across multiple environments. Led the management of enterprise size Dynatrace deployments</li>
           <li className="mb-2 leading-relaxed">Managing frontline production and deployment issues in a rotational role while continously enhancing toolsets for developers and quality engineers.</li>
           <li className="mb-2 leading-relaxed">Leading the development of automation and performance testing frameworks using a vast array of tools including k6 and Selenium</li>
